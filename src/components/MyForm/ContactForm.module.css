@@ -1,0 +1,6 @@
+.contact {
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    padding-top: 20px;
+}
