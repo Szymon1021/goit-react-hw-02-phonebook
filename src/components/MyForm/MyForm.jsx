@@ -6,7 +6,13 @@ class MyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contacts: [],
+      contacts: [
+        { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+        { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+        { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+        { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      ],
+      filter: '',
       name: '',
       number: '',
     };
@@ -31,6 +37,7 @@ class MyForm extends Component {
   handleSubmit = evt => {
     evt.preventDefault();
     //ss*/
+    const form = evt.currentTarget;
     const name = this.state.name;
     const number = this.state.number;
 
@@ -44,7 +51,10 @@ class MyForm extends Component {
         },
       ],
     }));
+    form.reset();
   };
+
+  handleFilter = () => {};
 
   render() {
     const valuesList = this.state.contacts.map(item => {
@@ -59,7 +69,7 @@ class MyForm extends Component {
       <>
         <h2>Phonebook </h2>
 
-        <form className={styles.contact}>
+        <form className={styles.contact} onSubmit={this.handleSubmit}>
           <div>
             <h4>Name</h4>
             <input
@@ -85,12 +95,12 @@ class MyForm extends Component {
             />
           </div>
           <div>
-            <button onClick={this.handleSubmit} type="addContact">
-              Add contact
-            </button>
+            <button type="addContact">Add contact</button>
           </div>
           <div>
             <h2>Contacts </h2>
+            <p> Find contacts by name</p>
+            <input></input>
             <p>{valuesList}</p>
           </div>
         </form>
