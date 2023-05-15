@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import styles from './ContactForm.module.css';
+import styles from './MyForm.module.css';
 
 class MyForm extends Component {
   constructor(props) {
@@ -54,10 +54,31 @@ class MyForm extends Component {
     form.reset();
   };
 
-  handleFilter = () => {};
+  handleInput = evt => {
+    this.setState({
+      filter: evt.target.value,
+    });
+  };
 
+  getFilteredContacts() {
+    if (this.state.filter) {
+      return this.state.contacts.filter(con =>
+        con.name.toLowerCase().includes(this.state.filter)
+      );
+    }
+
+    return this.state.contacts;
+  }
+
+  /* handleFilter = (evt) => {
+    const query = evt.target.value.toLowerCase().trim();
+    const filter = this.state.contacts.name.filter((contact) => 
+      contact.name.toLowerCase().includes(query)
+    )
+  };
+*/
   render() {
-    const valuesList = this.state.contacts.map(item => {
+    const valuesList = this.getFilteredContacts().map(item => {
       return (
         <li key={nanoid()}>
           {item.name}: {item.number}
@@ -97,13 +118,13 @@ class MyForm extends Component {
           <div>
             <button type="addContact">Add contact</button>
           </div>
-          <div>
-            <h2>Contacts </h2>
-            <p> Find contacts by name</p>
-            <input></input>
-            <p>{valuesList}</p>
-          </div>
         </form>
+        <div>
+          <h2>Contacts </h2>
+          <p> Find contacts by name</p>
+          <input onChange={this.handleInput}></input>
+          <ul>{valuesList}</ul>
+        </div>
       </>
     );
   }
