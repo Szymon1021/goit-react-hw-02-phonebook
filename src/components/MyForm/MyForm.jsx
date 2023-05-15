@@ -30,7 +30,7 @@ class MyForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-
+    //ss*/
     const name = this.state.name;
     const number = this.state.number;
 
