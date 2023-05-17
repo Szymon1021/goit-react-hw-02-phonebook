@@ -41,7 +41,7 @@ export class App extends Component {
     const name = this.state.name;
     const number = this.state.number;
     const islnArray =
-      this.state.contacts.find(contact => contact.name === name) < 0;
+      this.state.contacts.find(contact => contact.name === name);
     if (islnArray) {
       alert(`${name} is already in contacts`);
       return;
