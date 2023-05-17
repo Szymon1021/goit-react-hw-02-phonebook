@@ -28,6 +28,7 @@ export class MyForm extends Component {
 
           <label> Number</label>
           <input
+            className={styles.contactInput}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

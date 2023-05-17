@@ -40,8 +40,9 @@ export class App extends Component {
     const form = evt.currentTarget;
     const name = this.state.name;
     const number = this.state.number;
-    const islnArray =
-      this.state.contacts.find(contact => contact.name === name);
+    const islnArray = this.state.contacts.find(
+      contact => contact.name === name
+    );
     if (islnArray) {
       alert(`${name} is already in contacts`);
       return;
@@ -84,9 +85,18 @@ export class App extends Component {
         con.name.toLowerCase().includes(this.state.filterKey)
       );
     }
-
     return this.state.contacts;
   };
+
+  deleteFunction = id => {
+    const newFilteredContacts = this.state.contacts.filter(
+      contact => contact.id !== id
+    );
+    this.setState({
+      contacts: newFilteredContacts,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -99,7 +109,10 @@ export class App extends Component {
         />
         <h2> Contacts</h2>
         <Filter handleInput={this.handleInput} />
-        <ContactList getFilteredContacts={this.getFilteredContacts} />
+        <ContactList
+          getFilteredContacts={this.getFilteredContacts}
+          deleteFunction={this.deleteFunction}
+        />
       </div>
     );
   }
